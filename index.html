@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Números</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f3f3f3; }
+    h1 { color: #333; }
+    input, select, button { padding: 10px; margin: 5px; font-size: 16px; }
+    .resultado { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Conversor de Sistemas Numéricos</h1>
+  <input id="numero" type="text" placeholder="Ingresa el número">
+  <select id="tipo">
+    <option value="dec-bin">Decimal → Binario</option>
+    <option value="dec-hex">Decimal → Hexadecimal</option>
+    <option value="dec-oct">Decimal → Octal</option>
+    <option value="bin-dec">Binario → Decimal</option>
+    <option value="hex-dec">Hexadecimal → Decimal</option>
+    <option value="oct-dec">Octal → Decimal</option>
+  </select>
+  <button onclick="convertir()">Convertir</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    function convertir() {
+      let num = document.getElementById("numero").value;
+      let tipo = document.getElementById("tipo").value;
+      let resultado = "";
+
+      try {
+        switch(tipo) {
+          case "dec-bin":
+            resultado = parseInt(num).toString(2);
+            break;
+          case "dec-hex":
+            resultado = parseInt(num).toString(16).toUpperCase();
+            break;
+          case "dec-oct":
+            resultado = parseInt(num).toString(8);
+            break;
+          case "bin-dec":
+            resultado = parseInt(num, 2);
+            break;
+          case "hex-dec":
+            resultado = parseInt(num, 16);
+            break;
+          case "oct-dec":
+            resultado = parseInt(num, 8);
+            break;
+        }
+      } catch {
+        resultado = "Error: número inválido";
+      }
+
+      document.getElementById("resultado").innerText = "Resultado: " + resultado;
+    }
+  </script>
+</body>
+</html>
